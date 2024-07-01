@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.inc.admin.dao.biz.HydrologicStationDao">
+  <resultMap id="BaseResultMap" type="com.inc.admin.domain.biz.HydrologicStation">
+    <!-- @mbg.generated -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="h_name" jdbcType="VARCHAR" property="hName" />
+    <result column="h_code" jdbcType="VARCHAR" property="hCode" />
+    <result column="r_system" jdbcType="VARCHAR" property="rSystem" />
+    <result column="longitude" jdbcType="DOUBLE" property="longitude" />
+    <result column="latitude" jdbcType="DOUBLE" property="latitude" />
+    <result column="mean_annual_runoff" jdbcType="DOUBLE" property="meanAnnualRunoff" />
+    <result column="maximum_discharge" jdbcType="DOUBLE" property="maximumDischarge" />
+    <result column="maximum_time" jdbcType="TIMESTAMP" property="maximumTime" />
+    <result column="minimum_discharge" jdbcType="DOUBLE" property="minimumDischarge" />
+    <result column="minimum_time" jdbcType="TIMESTAMP" property="minimumTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!-- @mbg.generated -->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!-- @mbg.generated -->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!-- @mbg.generated -->
+    id, h_name, h_code, r_system, longitude, latitude, mean_annual_runoff, maximum_discharge, 
+    maximum_time, minimum_discharge, minimum_time
+  </sql>
+  <select id="selectByExample" parameterType="com.inc.admin.domain.biz.HydrologicStationCriteria" resultMap="BaseResultMap">
+    <!-- @mbg.generated -->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from hydrologic_station
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="startRow != null">
+      limit #{startRow} , #{pageSize}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!-- @mbg.generated -->
+    select 
+    <include refid="Base_Column_List" />
+    from hydrologic_station
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!-- @mbg.generated -->
+    delete from hydrologic_station
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.inc.admin.domain.biz.HydrologicStationCriteria">
+    <!-- @mbg.generated -->
+    delete from hydrologic_station
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.inc.admin.domain.biz.HydrologicStation">
+    <!-- @mbg.generated -->
+    insert into hydrologic_station (id, h_name, h_code, 
+      r_system, longitude, latitude, 
+      mean_annual_runoff, maximum_discharge, maximum_time, 
+      minimum_discharge, minimum_time)
+    values (#{id,jdbcType=INTEGER}, #{hName,jdbcType=VARCHAR}, #{hCode,jdbcType=VARCHAR}, 
+      #{rSystem,jdbcType=VARCHAR}, #{longitude,jdbcType=DOUBLE}, #{latitude,jdbcType=DOUBLE}, 
+      #{meanAnnualRunoff,jdbcType=DOUBLE}, #{maximumDischarge,jdbcType=DOUBLE}, #{maximumTime,jdbcType=TIMESTAMP}, 
+      #{minimumDischarge,jdbcType=DOUBLE}, #{minimumTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.inc.admin.domain.biz.HydrologicStation">
+    <!-- @mbg.generated -->
+    insert into hydrologic_station
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="hName != null">
+        h_name,
+      </if>
+      <if test="hCode != null">
+        h_code,
+      </if>
+      <if test="rSystem != null">
+        r_system,
+      </if>
+      <if test="longitude != null">
+        longitude,
+      </if>
+      <if test="latitude != null">
+        latitude,
+      </if>
+      <if test="meanAnnualRunoff != null">
+        mean_annual_runoff,
+      </if>
+      <if test="maximumDischarge != null">
+        maximum_discharge,
+      </if>
+      <if test="maximumTime != null">
+        maximum_time,
+      </if>
+      <if test="minimumDischarge != null">
+        minimum_discharge,
+      </if>
+      <if test="minimumTime != null">
+        minimum_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="hName != null">
+        #{hName,jdbcType=VARCHAR},
+      </if>
+      <if test="hCode != null">
+        #{hCode,jdbcType=VARCHAR},
+      </if>
+      <if test="rSystem != null">
+        #{rSystem,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null">
+        #{longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="latitude != null">
+        #{latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="meanAnnualRunoff != null">
+        #{meanAnnualRunoff,jdbcType=DOUBLE},
+      </if>
+      <if test="maximumDischarge != null">
+        #{maximumDischarge,jdbcType=DOUBLE},
+      </if>
+      <if test="maximumTime != null">
+        #{maximumTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="minimumDischarge != null">
+        #{minimumDischarge,jdbcType=DOUBLE},
+      </if>
+      <if test="minimumTime != null">
+        #{minimumTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.inc.admin.domain.biz.HydrologicStationCriteria" resultType="java.lang.Long">
+    <!-- @mbg.generated -->
+    select count(*) from hydrologic_station
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!-- @mbg.generated -->
+    update hydrologic_station
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.hName != null">
+        h_name = #{record.hName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hCode != null">
+        h_code = #{record.hCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rSystem != null">
+        r_system = #{record.rSystem,jdbcType=VARCHAR},
+      </if>
+      <if test="record.longitude != null">
+        longitude = #{record.longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="record.latitude != null">
+        latitude = #{record.latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="record.meanAnnualRunoff != null">
+        mean_annual_runoff = #{record.meanAnnualRunoff,jdbcType=DOUBLE},
+      </if>
+      <if test="record.maximumDischarge != null">
+        maximum_discharge = #{record.maximumDischarge,jdbcType=DOUBLE},
+      </if>
+      <if test="record.maximumTime != null">
+        maximum_time = #{record.maximumTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.minimumDischarge != null">
+        minimum_discharge = #{record.minimumDischarge,jdbcType=DOUBLE},
+      </if>
+      <if test="record.minimumTime != null">
+        minimum_time = #{record.minimumTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!-- @mbg.generated -->
+    update hydrologic_station
+    set id = #{record.id,jdbcType=INTEGER},
+      h_name = #{record.hName,jdbcType=VARCHAR},
+      h_code = #{record.hCode,jdbcType=VARCHAR},
+      r_system = #{record.rSystem,jdbcType=VARCHAR},
+      longitude = #{record.longitude,jdbcType=DOUBLE},
+      latitude = #{record.latitude,jdbcType=DOUBLE},
+      mean_annual_runoff = #{record.meanAnnualRunoff,jdbcType=DOUBLE},
+      maximum_discharge = #{record.maximumDischarge,jdbcType=DOUBLE},
+      maximum_time = #{record.maximumTime,jdbcType=TIMESTAMP},
+      minimum_discharge = #{record.minimumDischarge,jdbcType=DOUBLE},
+      minimum_time = #{record.minimumTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.inc.admin.domain.biz.HydrologicStation">
+    <!-- @mbg.generated -->
+    update hydrologic_station
+    <set>
+      <if test="hName != null">
+        h_name = #{hName,jdbcType=VARCHAR},
+      </if>
+      <if test="hCode != null">
+        h_code = #{hCode,jdbcType=VARCHAR},
+      </if>
+      <if test="rSystem != null">
+        r_system = #{rSystem,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null">
+        longitude = #{longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="latitude != null">
+        latitude = #{latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="meanAnnualRunoff != null">
+        mean_annual_runoff = #{meanAnnualRunoff,jdbcType=DOUBLE},
+      </if>
+      <if test="maximumDischarge != null">
+        maximum_discharge = #{maximumDischarge,jdbcType=DOUBLE},
+      </if>
+      <if test="maximumTime != null">
+        maximum_time = #{maximumTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="minimumDischarge != null">
+        minimum_discharge = #{minimumDischarge,jdbcType=DOUBLE},
+      </if>
+      <if test="minimumTime != null">
+        minimum_time = #{minimumTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.inc.admin.domain.biz.HydrologicStation">
+    <!-- @mbg.generated -->
+    update hydrologic_station
+    set h_name = #{hName,jdbcType=VARCHAR},
+      h_code = #{hCode,jdbcType=VARCHAR},
+      r_system = #{rSystem,jdbcType=VARCHAR},
+      longitude = #{longitude,jdbcType=DOUBLE},
+      latitude = #{latitude,jdbcType=DOUBLE},
+      mean_annual_runoff = #{meanAnnualRunoff,jdbcType=DOUBLE},
+      maximum_discharge = #{maximumDischarge,jdbcType=DOUBLE},
+      maximum_time = #{maximumTime,jdbcType=TIMESTAMP},
+      minimum_discharge = #{minimumDischarge,jdbcType=DOUBLE},
+      minimum_time = #{minimumTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
