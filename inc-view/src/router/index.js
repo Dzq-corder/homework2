@@ -9,6 +9,14 @@ import UserChangePwd from '@/view/user/changepwd'
 import UserProfile from '@/view/user/profile'
 import MenuList from '@/view/menu/list'
 import Book from '@/view/book/list'
+import RainfallStation from '@/view/rainfallStation/list'
+import GaugingStation from '@/view/gaugingStation/list'
+import HydrologicStation from '@/view/hydrologicStation/list'
+import Log from '@/view/log/list'
+import WaterSystemCode from '@/view/waterSystemCode/list'
+
+
+
 
 
 // 懒加载方式，当路由被访问的时候才加载对应组件
@@ -61,6 +69,61 @@ let router = new Router({
       iconCls: 'fa fa-user', // 图标样式class
       children: [
         {path: '/book', component: Book, name: '图书列表', menuShow: true}
+      ]
+    },
+    {
+      path: '/',
+      component: Home,
+      name: '水域编码管理',
+      menuShow: true,
+      leaf: true, // 只有一个节点
+      iconCls: 'fa fa-user', // 图标样式class
+      children: [
+        {path: '/waterSystemCode', component: WaterSystemCode, name: '水域编码列表', menuShow: true}
+      ]
+    },
+    {
+      path: '/',
+      component: Home,
+      name: '日志管理',
+      menuShow: true,
+      leaf: true, // 只有一个节点
+      iconCls: 'fa fa-user', // 图标样式class
+      children: [
+        {path: '/log', component: Log, name: '日志列表', menuShow: true}
+      ]
+    },
+    {
+      path: '/',
+      component: Home,
+      name: '降雨管理',
+      menuShow: true,
+      leaf: true, // 只有一个节点
+      iconCls: 'fa fa-user', // 图标样式class
+      children: [
+        {path: '/rainfallStation', component: RainfallStation, name: '降雨列表', menuShow: true}
+      ]
+    },
+    {
+      path: '/',
+      component: Home,
+      name: '水位管理',
+      menuShow: true,
+      leaf: true, // 只有一个节点
+      iconCls: 'fa fa-user', // 图标样式class
+      children: [
+        {path: '/gaugingStation', component: GaugingStation, name: '水位列表', menuShow: true}
+      ]
+    },
+    {
+      path: '/',
+      component: Home,
+      name: '流量管理',
+      menuShow: true,
+      leaf: true, // 只有一个节点
+      iconCls: 'fa fa-user', // 图标样式class
+      children: [
+        {path: '/hydrologicStation', component: HydrologicStation, name: '流量列表', menuShow: true}
       ]
     },
     {
