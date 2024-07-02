@@ -7,8 +7,6 @@
     <result column="h_name" jdbcType="VARCHAR" property="hName" />
     <result column="h_code" jdbcType="VARCHAR" property="hCode" />
     <result column="r_system" jdbcType="VARCHAR" property="rSystem" />
-    <result column="longitude" jdbcType="DOUBLE" property="longitude" />
-    <result column="latitude" jdbcType="DOUBLE" property="latitude" />
     <result column="avg_fall" jdbcType="DOUBLE" property="avgFall" />
     <result column="max_fall" jdbcType="DOUBLE" property="maxFall" />
   </resultMap>
@@ -74,7 +72,7 @@
   </sql>
   <sql id="Base_Column_List">
     <!-- @mbg.generated -->
-    id, h_name, h_code, r_system, longitude, latitude, avg_fall, max_fall
+    id, h_name, h_code, r_system, avg_fall, max_fall
   </sql>
   <select id="selectByExample" parameterType="com.inc.admin.domain.biz.RainfallStationCriteria" resultMap="BaseResultMap">
     <!-- @mbg.generated -->
@@ -116,11 +114,11 @@
   <insert id="insert" parameterType="com.inc.admin.domain.biz.RainfallStation">
     <!-- @mbg.generated -->
     insert into rainfall_station (id, h_name, h_code, 
-      r_system, longitude, latitude, 
-      avg_fall, max_fall)
+      r_system, avg_fall, max_fall
+      )
     values (#{id,jdbcType=INTEGER}, #{hName,jdbcType=VARCHAR}, #{hCode,jdbcType=VARCHAR}, 
-      #{rSystem,jdbcType=VARCHAR}, #{longitude,jdbcType=DOUBLE}, #{latitude,jdbcType=DOUBLE}, 
-      #{avgFall,jdbcType=DOUBLE}, #{maxFall,jdbcType=DOUBLE})
+      #{rSystem,jdbcType=VARCHAR}, #{avgFall,jdbcType=DOUBLE}, #{maxFall,jdbcType=DOUBLE}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.inc.admin.domain.biz.RainfallStation">
     <!-- @mbg.generated -->
@@ -137,12 +135,6 @@
       </if>
       <if test="rSystem != null">
         r_system,
-      </if>
-      <if test="longitude != null">
-        longitude,
-      </if>
-      <if test="latitude != null">
-        latitude,
       </if>
       <if test="avgFall != null">
         avg_fall,
@@ -163,12 +155,6 @@
       </if>
       <if test="rSystem != null">
         #{rSystem,jdbcType=VARCHAR},
-      </if>
-      <if test="longitude != null">
-        #{longitude,jdbcType=DOUBLE},
-      </if>
-      <if test="latitude != null">
-        #{latitude,jdbcType=DOUBLE},
       </if>
       <if test="avgFall != null">
         #{avgFall,jdbcType=DOUBLE},
@@ -201,12 +187,6 @@
       <if test="record.rSystem != null">
         r_system = #{record.rSystem,jdbcType=VARCHAR},
       </if>
-      <if test="record.longitude != null">
-        longitude = #{record.longitude,jdbcType=DOUBLE},
-      </if>
-      <if test="record.latitude != null">
-        latitude = #{record.latitude,jdbcType=DOUBLE},
-      </if>
       <if test="record.avgFall != null">
         avg_fall = #{record.avgFall,jdbcType=DOUBLE},
       </if>
@@ -225,8 +205,6 @@
       h_name = #{record.hName,jdbcType=VARCHAR},
       h_code = #{record.hCode,jdbcType=VARCHAR},
       r_system = #{record.rSystem,jdbcType=VARCHAR},
-      longitude = #{record.longitude,jdbcType=DOUBLE},
-      latitude = #{record.latitude,jdbcType=DOUBLE},
       avg_fall = #{record.avgFall,jdbcType=DOUBLE},
       max_fall = #{record.maxFall,jdbcType=DOUBLE}
     <if test="_parameter != null">
@@ -246,12 +224,6 @@
       <if test="rSystem != null">
         r_system = #{rSystem,jdbcType=VARCHAR},
       </if>
-      <if test="longitude != null">
-        longitude = #{longitude,jdbcType=DOUBLE},
-      </if>
-      <if test="latitude != null">
-        latitude = #{latitude,jdbcType=DOUBLE},
-      </if>
       <if test="avgFall != null">
         avg_fall = #{avgFall,jdbcType=DOUBLE},
       </if>
@@ -267,8 +239,6 @@
     set h_name = #{hName,jdbcType=VARCHAR},
       h_code = #{hCode,jdbcType=VARCHAR},
       r_system = #{rSystem,jdbcType=VARCHAR},
-      longitude = #{longitude,jdbcType=DOUBLE},
-      latitude = #{latitude,jdbcType=DOUBLE},
       avg_fall = #{avgFall,jdbcType=DOUBLE},
       max_fall = #{maxFall,jdbcType=DOUBLE}
     where id = #{id,jdbcType=INTEGER}

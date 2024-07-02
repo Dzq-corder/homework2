@@ -6,7 +6,7 @@ import com.inc.admin.domain.sys.BaseEntity;
  * 
  * 表名：rainfall_station
  * @author tanzibiao
- * @date 2024-07-01 20:32:25
+ * @date 2024-07-02 18:50:44
  */
 public class RainfallStation extends BaseEntity {
     private Integer id;
@@ -19,12 +19,6 @@ public class RainfallStation extends BaseEntity {
 
     /**水系*/
     private String rSystem;
-
-    /**经度*/
-    private Double longitude;
-
-    /**纬度*/
-    private Double latitude;
 
     /**多年平均降雨量（mm）*/
     private Double avgFall;
@@ -62,22 +56,6 @@ public class RainfallStation extends BaseEntity {
 
     public void setrSystem(String rSystem) {
         this.rSystem = rSystem == null ? null : rSystem.trim();
-    }
-
-    public Double getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(Double longitude) {
-        this.longitude = longitude;
-    }
-
-    public Double getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(Double latitude) {
-        this.latitude = latitude;
     }
 
     public Double getAvgFall() {

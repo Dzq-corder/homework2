@@ -1,12 +1,17 @@
 package com.inc.admin.controller.biz;
 
+import com.inc.admin.context.FilterContextHandler;
 import com.inc.admin.domain.biz.GaugingStation;
+import com.inc.admin.domain.biz.Log;
 import com.inc.admin.service.biz.GaugingStationService;
+import com.inc.admin.service.biz.LogService;
 import com.inc.admin.utils.R;
 import javax.annotation.Resource;
 import javax.validation.constraints.NotNull;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Date;
 
 /**
  * 管理 控制器
@@ -18,6 +23,8 @@ import org.springframework.web.bind.annotation.*;
 public class GaugingStationController {
     @Resource
     private GaugingStationService gaugingStationService;
+    @Resource
+    private LogService logService;
 
     /**
      * 分页查询 列表
@@ -32,7 +39,17 @@ public class GaugingStationController {
      */
     @PostMapping("/insert")
     public R insert(@RequestBody GaugingStation req) {
-        return R.operate(gaugingStationService.insert(req)>0);
+        if(gaugingStationService.insert(req)>0){
+            Log log=new Log();
+            log.setLogTime( new Date());
+            log.setUserId(FilterContextHandler.getUserID());
+            log.setLogMessage("insert into gauging_station");
+            logService.insert(log);
+            return R.operate(true);
+
+        }
+        else return R.operate(false);
+
     }
 
     /**
@@ -40,7 +57,17 @@ public class GaugingStationController {
      */
     @PostMapping("/update")
     public R update(@RequestBody GaugingStation req) {
-        return R.operate(gaugingStationService.update(req)>0);
+        if(gaugingStationService.update(req)>0){
+            Log log=new Log();
+            log.setLogTime( new Date());
+            log.setUserId(FilterContextHandler.getUserID());
+            log.setLogMessage("update gauging_station");
+            logService.insert(log);
+            return R.operate(true);
+
+        }
+        else return R.operate(false);
+
     }
 
     /**
@@ -48,6 +75,15 @@ public class GaugingStationController {
      */
     @PostMapping("/delete")
     public R delete(@Validated @NotNull(message = "编号不能为空") @RequestParam("id") @RequestBody Integer id) {
-        return R.operate(gaugingStationService.delete(id)>0);
+        if(gaugingStationService.delete(id)>0){
+            Log log=new Log();
+            log.setLogTime( new Date());
+            log.setUserId(FilterContextHandler.getUserID());
+            log.setLogMessage("delete from gauging_station");
+            logService.insert(log);
+            return R.operate(true);
+
+        }
+        else return R.operate(false);
     }
 }

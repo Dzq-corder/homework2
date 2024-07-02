@@ -82,8 +82,6 @@ public class RainfallStationServiceImpl implements RainfallStationService {
             if (StringUtils.isNotBlank(req.gethName())) {criteria.andHNameEqualTo(req.gethName());}
             if (StringUtils.isNotBlank(req.gethCode())) {criteria.andHCodeEqualTo(req.gethCode());}
             if (StringUtils.isNotBlank(req.getrSystem())) {criteria.andRSystemEqualTo(req.getrSystem());}
-            if (req.getLongitude() != null) {criteria.andLongitudeEqualTo(req.getLongitude());        }
-            if (req.getLatitude() != null) {criteria.andLatitudeEqualTo(req.getLatitude());        }
             if (req.getAvgFall() != null) {criteria.andAvgFallEqualTo(req.getAvgFall());        }
             if (req.getMaxFall() != null) {criteria.andMaxFallEqualTo(req.getMaxFall());        }
         }

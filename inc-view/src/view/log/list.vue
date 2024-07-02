@@ -43,6 +43,7 @@
         <el-table-column type="index" width="60"></el-table-column>
         <el-table-column prop="userId" label="用户id"></el-table-column>
         <el-table-column prop="logTime" label="日志时间"></el-table-column>
+        <el-table-column prop="logMessage" label="日志信息"></el-table-column>
         <el-table-column label="操作" width="150">
           <template slot-scope="scope">
             <addForm :call="search" :data="scope.row" size="mini" title="编辑"/>
@@ -80,7 +81,7 @@
         colLayOut: {xs: 12,sm:12,md:6, lg: 6},
         formLabelWidth: "160px",
         filters: {
-          id: ''
+
         },
         dataList: [],
         total: 0,

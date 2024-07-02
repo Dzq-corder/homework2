@@ -1,6 +1,9 @@
 package com.inc.admin.domain.biz;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.inc.admin.domain.sys.BaseEntity;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 /**
@@ -31,12 +34,16 @@ public class GaugingStation extends BaseEntity {
     private Double highestWaterLevel;
 
     /**实测最高水位时间*/
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date highestWaterTime;
 
     /**实测最低水位*/
     private Double lowWaterLevel;
 
     /**实测最低水位时间*/
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date lowWaterTime;
 
     public Integer getId() {

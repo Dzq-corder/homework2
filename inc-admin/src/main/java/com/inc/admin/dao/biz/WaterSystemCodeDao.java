@@ -81,4 +81,11 @@ public interface WaterSystemCodeDao {
      * @return int
      */
     int updateByPrimaryKey(WaterSystemCode record);
+
+    /**
+     * 根据code获取名称
+     * @return
+     */
+
+    String getName(String code);
 }

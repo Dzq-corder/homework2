@@ -148,6 +148,10 @@
       <include refid="Example_Where_Clause" />
     </if>
   </select>
+  <select id="getName" resultType="java.lang.String" parameterType="java.lang.String">
+    select name from water_system_code
+    where code=#{code}
+  </select>
   <update id="updateByExampleSelective" parameterType="map">
     <!-- @mbg.generated -->
     update water_system_code

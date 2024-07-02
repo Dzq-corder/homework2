@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * 管理 service
  * @author tanzibiao
- * @date 2024-07-01 20:32:25
+ * @date 2024-07-02 18:50:44
 */
 public interface RainfallStationService {
     /**

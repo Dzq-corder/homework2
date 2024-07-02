@@ -11,6 +11,11 @@ import java.util.List;
 */
 public interface WaterSystemCodeService {
     /**
+     * 根据code获取名称
+     */
+    String getName(String code);
+
+    /**
      * 分页查询
      */
     PageInfo<WaterSystemCode> listByPage(WaterSystemCode req);

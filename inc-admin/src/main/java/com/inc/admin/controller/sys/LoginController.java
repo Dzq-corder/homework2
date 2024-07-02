@@ -30,6 +30,7 @@ import java.util.Map;
 @RequestMapping()
 @RestController
 public class LoginController {
+
     @Autowired
     UserService userService;
     @Autowired
@@ -59,6 +60,7 @@ public class LoginController {
         }
         //首先清除用户缓存权限
         menuService.clearCache(userDO.getUserId());
+
         return R.ok("登录成功")
                 .put("token", token).put("user",userDO)
                 .put("perms",menuService.PermsByUserId(userDO.getUserId()))

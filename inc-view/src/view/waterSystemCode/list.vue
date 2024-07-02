@@ -13,11 +13,12 @@
         <el-form role="form" size="small" id="projectForm" class="form-horizontal details">
           <el-row>
             <el-col :xs="colLayOut.xs" :lg="colLayOut.lg" :sm="colLayOut.sm" :md="colLayOut.md">
-              <el-form-item :label-width="formLabelWidth" label="编号:">
-                <el-input size="mini" type="text" v-model="filters.id" clearable>
+              <el-form-item :label-width="formLabelWidth" label="代码:">
+                <el-input size="mini" type="text" v-model="filters.code" clearable>
                 </el-input>
               </el-form-item>
             </el-col>
+
             <el-collapse-transition>
               <div v-show="showQueryCondition">
 
@@ -41,8 +42,8 @@
       <!--列表-->
       <el-table :data="dataList" highlight-current-row @selection-change="selsChange" style="width: 100%;">
         <el-table-column type="index" width="60"></el-table-column>
-        <el-table-column prop="code" label="编码"></el-table-column>
         <el-table-column prop="name" label="名称"></el-table-column>
+        <el-table-column prop="code" label="编码"></el-table-column>
         <el-table-column label="操作" width="150">
           <template slot-scope="scope">
             <addForm :call="search" :data="scope.row" size="mini" title="编辑"/>
@@ -80,7 +81,7 @@
         colLayOut: {xs: 12,sm:12,md:6, lg: 6},
         formLabelWidth: "160px",
         filters: {
-          id: ''
+
         },
         dataList: [],
         total: 0,

@@ -47,6 +47,12 @@
         <el-table-column type="index" width="60"></el-table-column>
         <el-table-column prop="hName" label="测站名称"></el-table-column>
         <el-table-column prop="hCode" label="测站编码"></el-table-column>
+<!--        <el-table-column prop="rSystem" label="水系"></el-table-column>-->
+<!--        <el-table-column prop="rSystem" label="水系">-->
+<!--          <template slot-scope="scope">-->
+<!--            {{ transformRSystem(scope.row.rSystem) }}-->
+<!--          </template>-->
+<!--        </el-table-column>-->
         <el-table-column prop="rSystem" label="水系"></el-table-column>
         <el-table-column prop="longitude" label="经度"></el-table-column>
         <el-table-column prop="latitude" label="纬度"></el-table-column>
@@ -85,14 +91,14 @@
   import addForm from './components/addForm';
   import api from '@/api/apiHydrologicStation';
   import ShowMore from '@/components/ShowMore';
-
+  import apiWaterSystemCode from "@/api/apiWaterSystemCode";
   export default {
     data() {
       return {
         colLayOut: {xs: 12,sm:12,md:6, lg: 6},
         formLabelWidth: "160px",
         filters: {
-          id: ''
+
         },
         dataList: [],
         total: 0,
@@ -146,6 +152,16 @@
         });
 
       },
+      // transformRSystem(rSystem) {
+      //   // let rSystemName='';
+      //   //  apiWaterSystemCode.getName(rSystem,(result)=>{
+      //   //    rSystemName=result.data;
+      //   //  });
+      //   //  console.log(rSystem);
+      //   //  return rSystemName;
+      //
+      //
+      // },
       selsChange(sels) {
         this.sels = sels;
       },

@@ -17,6 +17,11 @@ public class WaterSystemCodeServiceImpl implements WaterSystemCodeService {
     @Resource
     private WaterSystemCodeDao waterSystemCodeDao;
 
+    @Override
+    public String getName(String code) {
+        return waterSystemCodeDao.getName(code);
+    }
+
     /**
      * 分页查询
      */

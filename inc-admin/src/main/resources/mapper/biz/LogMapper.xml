@@ -73,7 +73,7 @@
   </sql>
   <sql id="Base_Column_List">
     <!-- @mbg.generated -->
-    id, user_id, log_time
+    id, user_id, log_time,log_message
   </sql>
   <sql id="Blob_Column_List">
     <!-- @mbg.generated -->

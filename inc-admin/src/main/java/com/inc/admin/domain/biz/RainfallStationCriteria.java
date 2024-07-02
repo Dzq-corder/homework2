@@ -147,7 +147,7 @@ public class RainfallStationCriteria {
     /**
      * 
      * @author tanzibiao
-     * @date 2024-07-01 20:32:25
+     * @date 2024-07-02 18:50:44
      */
     protected abstract static class GeneratedCriteria {
         protected List<Criterion> criteria;
@@ -460,126 +460,6 @@ public class RainfallStationCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andLongitudeIsNull() {
-            addCriterion("longitude is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andLongitudeIsNotNull() {
-            addCriterion("longitude is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andLongitudeEqualTo(Double value) {
-            addCriterion("longitude =", value, "longitude");
-            return (Criteria) this;
-        }
-
-        public Criteria andLongitudeNotEqualTo(Double value) {
-            addCriterion("longitude <>", value, "longitude");
-            return (Criteria) this;
-        }
-
-        public Criteria andLongitudeGreaterThan(Double value) {
-            addCriterion("longitude >", value, "longitude");
-            return (Criteria) this;
-        }
-
-        public Criteria andLongitudeGreaterThanOrEqualTo(Double value) {
-            addCriterion("longitude >=", value, "longitude");
-            return (Criteria) this;
-        }
-
-        public Criteria andLongitudeLessThan(Double value) {
-            addCriterion("longitude <", value, "longitude");
-            return (Criteria) this;
-        }
-
-        public Criteria andLongitudeLessThanOrEqualTo(Double value) {
-            addCriterion("longitude <=", value, "longitude");
-            return (Criteria) this;
-        }
-
-        public Criteria andLongitudeIn(List<Double> values) {
-            addCriterion("longitude in", values, "longitude");
-            return (Criteria) this;
-        }
-
-        public Criteria andLongitudeNotIn(List<Double> values) {
-            addCriterion("longitude not in", values, "longitude");
-            return (Criteria) this;
-        }
-
-        public Criteria andLongitudeBetween(Double value1, Double value2) {
-            addCriterion("longitude between", value1, value2, "longitude");
-            return (Criteria) this;
-        }
-
-        public Criteria andLongitudeNotBetween(Double value1, Double value2) {
-            addCriterion("longitude not between", value1, value2, "longitude");
-            return (Criteria) this;
-        }
-
-        public Criteria andLatitudeIsNull() {
-            addCriterion("latitude is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andLatitudeIsNotNull() {
-            addCriterion("latitude is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andLatitudeEqualTo(Double value) {
-            addCriterion("latitude =", value, "latitude");
-            return (Criteria) this;
-        }
-
-        public Criteria andLatitudeNotEqualTo(Double value) {
-            addCriterion("latitude <>", value, "latitude");
-            return (Criteria) this;
-        }
-
-        public Criteria andLatitudeGreaterThan(Double value) {
-            addCriterion("latitude >", value, "latitude");
-            return (Criteria) this;
-        }
-
-        public Criteria andLatitudeGreaterThanOrEqualTo(Double value) {
-            addCriterion("latitude >=", value, "latitude");
-            return (Criteria) this;
-        }
-
-        public Criteria andLatitudeLessThan(Double value) {
-            addCriterion("latitude <", value, "latitude");
-            return (Criteria) this;
-        }
-
-        public Criteria andLatitudeLessThanOrEqualTo(Double value) {
-            addCriterion("latitude <=", value, "latitude");
-            return (Criteria) this;
-        }
-
-        public Criteria andLatitudeIn(List<Double> values) {
-            addCriterion("latitude in", values, "latitude");
-            return (Criteria) this;
-        }
-
-        public Criteria andLatitudeNotIn(List<Double> values) {
-            addCriterion("latitude not in", values, "latitude");
-            return (Criteria) this;
-        }
-
-        public Criteria andLatitudeBetween(Double value1, Double value2) {
-            addCriterion("latitude between", value1, value2, "latitude");
-            return (Criteria) this;
-        }
-
-        public Criteria andLatitudeNotBetween(Double value1, Double value2) {
-            addCriterion("latitude not between", value1, value2, "latitude");
-            return (Criteria) this;
-        }
-
         public Criteria andAvgFallIsNull() {
             addCriterion("avg_fall is null");
             return (Criteria) this;
@@ -704,7 +584,7 @@ public class RainfallStationCriteria {
     /**
      * 
      * @author tanzibiao
-     * @date 2024-07-01 20:32:25
+     * @date 2024-07-02 18:50:44
      */
     public static class Criteria extends GeneratedCriteria {
         protected Criteria() {
@@ -715,7 +595,7 @@ public class RainfallStationCriteria {
     /**
      * 
      * @author tanzibiao
-     * @date 2024-07-01 20:32:25
+     * @date 2024-07-02 18:50:44
      */
     public static class Criterion {
         private String condition;

@@ -1,6 +1,9 @@
 package com.inc.admin.domain.biz;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.inc.admin.domain.sys.BaseEntity;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 /**
@@ -16,6 +19,8 @@ public class Log extends BaseEntity {
     private String userId;
 
     /**日志时间*/
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date logTime;
 
     /**信息*/
