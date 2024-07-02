@@ -44,8 +44,6 @@
         <el-table-column prop="hName" label="测站名称"></el-table-column>
         <el-table-column prop="hCode" label="测站编码"></el-table-column>
         <el-table-column prop="rSystem" label="水系"></el-table-column>
-        <el-table-column prop="longitude" label="经度"></el-table-column>
-        <el-table-column prop="latitude" label="纬度"></el-table-column>
         <el-table-column prop="avgFall" label="多年平均降雨量（mm）"></el-table-column>
         <el-table-column prop="maxFall" label="实测年最大降雨量（mm）"></el-table-column>
         <el-table-column label="操作" width="150">

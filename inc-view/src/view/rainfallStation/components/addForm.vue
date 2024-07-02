@@ -14,12 +14,6 @@
           <el-form-item label="水系" prop="rSystem">
             <el-input size="mini" v-model="data.rSystem" auto-complete="off"></el-input>
           </el-form-item>
-          <el-form-item label="经度" prop="longitude">
-            <el-input size="mini" v-model="data.longitude" auto-complete="off"></el-input>
-          </el-form-item>
-          <el-form-item label="纬度" prop="latitude">
-            <el-input size="mini" v-model="data.latitude" auto-complete="off"></el-input>
-          </el-form-item>
           <el-form-item label="多年平均降雨量（mm）" prop="avgFall">
             <el-input size="mini" v-model="data.avgFall" auto-complete="off"></el-input>
           </el-form-item>

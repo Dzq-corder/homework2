@@ -24,13 +24,13 @@
             <el-input size="mini" v-model="data.highestWaterLevel" auto-complete="off"></el-input>
           </el-form-item>
           <el-form-item label="实测最高水位时间" prop="highestWaterTime">
-            <el-input size="mini" v-model="data.highestWaterTime" auto-complete="off"></el-input>
+            <el-date-picker type="date" placeholder="实测最高水位时间" v-model="data.highestWaterTime"></el-date-picker>
           </el-form-item>
           <el-form-item label="实测最低水位" prop="lowWaterLevel">
             <el-input size="mini" v-model="data.lowWaterLevel" auto-complete="off"></el-input>
           </el-form-item>
           <el-form-item label="实测最低水位时间" prop="lowWaterTime">
-            <el-input size="mini" v-model="data.lowWaterTime" auto-complete="off"></el-input>
+            <el-date-picker type="date" placeholder="实测最低水位时间" v-model="data.lowWaterTime"></el-date-picker>
           </el-form-item>
         </el-form>
         <div slot="footer" class="dialog-footer">
