@@ -3,51 +3,48 @@
     <el-col :span="24" class="warp-breadcrum">
       <el-breadcrumb separator="/">
         <el-breadcrumb-item :to="{ path: '/' }"><b>首页</b></el-breadcrumb-item>
-        <el-breadcrumb-item>管理</el-breadcrumb-item>
+        <el-breadcrumb-item>水域编码数据</el-breadcrumb-item>
       </el-breadcrumb>
     </el-col>
 
     <el-col :span="24" class="warp-main" v-loading="loading" element-loading-text="拼命加载中">
       <!--工具条-->
       <el-col :span="24" class="toolbar" style="padding-bottom: 0px;">
-        <el-form role="form" size="small" id="projectForm" class="form-horizontal details">
+        <el-form role="form" :inline="true" size="small" id="projectForm" class="form-horizontal details">
           <el-row>
-            <el-col :xs="colLayOut.xs" :lg="colLayOut.lg" :sm="colLayOut.sm" :md="colLayOut.md">
-              <el-form-item :label-width="formLabelWidth" label="代码:">
+              <el-form-item label="水系编码:">
                 <el-input size="mini" type="text" v-model="filters.code" clearable>
                 </el-input>
               </el-form-item>
-            </el-col>
-
+              <el-form-item label="水系:">
+                <el-input size="mini" type="text" v-model="filters.name" clearable>
+                </el-input>
+              </el-form-item>
             <el-collapse-transition>
               <div v-show="showQueryCondition">
-
               </div>
             </el-collapse-transition>
-
-
-            <el-col :span="24">
-              <el-form-item label-width="100px" style="float: right">
+              <el-form-item>
                 <el-button :loading="loading" router-preventReClick size="mini" type="primary" plain icon="el-icon-search"
                            @click="handleSearch">查询
                 </el-button>
-                <ShowMore :clickCall="()=>this.showQueryCondition=!this.showQueryCondition"/>
+                <!-- <ShowMore :clickCall="()=>this.showQueryCondition=!this.showQueryCondition"/> -->
+                <addForm size="mini" :call="search" icon="el-icon-plus" type="primary" title="新增" v-if="option('新增')"/>
               </el-form-item>
-            </el-col>
           </el-row>
         </el-form>
       </el-col>
 
-      <addForm size="mini" :call="search" icon="el-icon-plus" type="primary" title="新增"/>
+
       <!--列表-->
       <el-table :data="dataList" highlight-current-row @selection-change="selsChange" style="width: 100%;">
         <el-table-column type="index" width="60"></el-table-column>
-        <el-table-column prop="name" label="名称"></el-table-column>
-        <el-table-column prop="code" label="编码"></el-table-column>
+        <el-table-column prop="code" label="水系编码"></el-table-column>
+        <el-table-column prop="name" label="水系"></el-table-column>
         <el-table-column label="操作" width="150">
           <template slot-scope="scope">
-            <addForm :call="search" :data="scope.row" size="mini" title="编辑"/>
-            <el-button type="danger" @click="del(scope.$index,scope.row)" size="mini">删除</el-button>
+            <addForm :call="search" :data="scope.row" size="mini" title="编辑" v-if="option('编辑')"/>
+            <el-button type="danger" @click="del(scope.$index,scope.row)" size="mini" v-if="option('删除')">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -81,7 +78,7 @@
         colLayOut: {xs: 12,sm:12,md:6, lg: 6},
         formLabelWidth: "160px",
         filters: {
-
+          id: ''
         },
         dataList: [],
         total: 0,
@@ -97,6 +94,26 @@
     },
     //方法
     methods: {
+      option: function (s) {
+        let menus = JSON.parse(window.localStorage.getItem("menus"));
+        for (let i in menus) {
+          let item = menus[i];
+          if (item.name==='数据管理') {
+            for (let j in item.children) {
+              let ch = item.children[j];
+              if (ch.name==='水域编码') {
+                for (let k in ch.children) {
+                  let as = ch.children[k];
+                  if (s===as.name) {
+                    return true;
+                  }
+                }
+              }
+            }
+          }
+        }
+        return false;
+      },
       handleSizeChange(val) {
         this.pageSize = val;
         this.search();

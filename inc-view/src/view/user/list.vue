@@ -19,7 +19,7 @@
             <el-button type="primary" @click="handleSearch">查询</el-button>
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" @click="showAddDialog">添加</el-button>
+            <el-button type="primary" @click="showAddDialog" v-if="option('新增')">添加</el-button>
           </el-form-item>
         </el-form>
       </el-col>
@@ -44,9 +44,9 @@
         </el-table-column>
         <el-table-column label="操作" width="250">
           <template slot-scope="scope">
-            <el-button size="mini" @click="showEditDialog(scope.$index,scope.row)">编辑</el-button>
-            <el-button size="mini" @click="resetPwd(scope.row.userId)">重置密码</el-button>
-            <el-button size="mini" type="danger" @click="removeUser(scope.$index,scope.row)">删除</el-button>
+            <el-button size="mini" @click="showEditDialog(scope.$index,scope.row)" v-if="option('编辑')">编辑</el-button>
+            <el-button size="mini" @click="resetPwd(scope.row.userId)" v-if="option('重置密码')">重置密码</el-button>
+            <el-button size="mini" type="danger" @click="removeUser(scope.$index,scope.row)" v-if="option('删除')">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -128,6 +128,7 @@
         filters: {
           name: ""
         },
+        menus: [],
         loading: false,
         users: [],
         roles: [],
@@ -170,6 +171,26 @@
       };
     },
     methods: {
+      option: function (s) {
+        let menus = JSON.parse(window.localStorage.getItem("menus"));
+        for (let i in menus) {
+          let item = menus[i];
+          if (item.name==='系统管理') {
+            for (let j in item.children) {
+              let ch = item.children[j];
+              if (ch.name==='用户管理') {
+                for (let k in ch.children) {
+                  let as = ch.children[k];
+                  if (s===as.name) {
+                    return true;
+                  }
+                }
+              }
+            }
+          }
+        }
+        return false;
+      },
       //性别显示转换
       formatSex: function (row, column) {
         return row.sex == 1 ? "男" : row.sex == 0 ? "女" : "未知";

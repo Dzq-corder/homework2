@@ -45,7 +45,7 @@ import API from "../api/api_user";
 export default {
   data() {
     return {
-      title: '水文管理平台',
+      title: '水利数据管理平台',
       loading: false,
       account: {
         username: "",

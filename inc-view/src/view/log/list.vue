@@ -3,53 +3,38 @@
     <el-col :span="24" class="warp-breadcrum">
       <el-breadcrumb separator="/">
         <el-breadcrumb-item :to="{ path: '/' }"><b>首页</b></el-breadcrumb-item>
-        <el-breadcrumb-item>管理</el-breadcrumb-item>
+        <el-breadcrumb-item>日志管理</el-breadcrumb-item>
       </el-breadcrumb>
     </el-col>
 
     <el-col :span="24" class="warp-main" v-loading="loading" element-loading-text="拼命加载中">
       <!--工具条-->
       <el-col :span="24" class="toolbar" style="padding-bottom: 0px;">
-        <el-form role="form" size="small" id="projectForm" class="form-horizontal details">
+        <el-form :inline="true" role="form" size="small" id="projectForm" class="form-horizontal details">
           <el-row>
-            <el-col :xs="colLayOut.xs" :lg="colLayOut.lg" :sm="colLayOut.sm" :md="colLayOut.md">
-              <el-form-item :label-width="formLabelWidth" label="编号:">
-                <el-input size="mini" type="text" v-model="filters.id" clearable>
+              <el-form-item label="用户id:">
+                <el-input size="mini" type="text" v-model="filters.userId" clearable>
                 </el-input>
               </el-form-item>
-            </el-col>
             <el-collapse-transition>
               <div v-show="showQueryCondition">
-
               </div>
             </el-collapse-transition>
-
-
-            <el-col :span="24">
-              <el-form-item label-width="100px" style="float: right">
+              <el-form-item>
                 <el-button :loading="loading" router-preventReClick size="mini" type="primary" plain icon="el-icon-search"
                            @click="handleSearch">查询
                 </el-button>
-                <ShowMore :clickCall="()=>this.showQueryCondition=!this.showQueryCondition"/>
+                <!-- <ShowMore :clickCall="()=>this.showQueryCondition=!this.showQueryCondition"/> -->
               </el-form-item>
-            </el-col>
           </el-row>
         </el-form>
       </el-col>
-
-      <addForm size="mini" :call="search" icon="el-icon-plus" type="primary" title="新增"/>
       <!--列表-->
       <el-table :data="dataList" highlight-current-row @selection-change="selsChange" style="width: 100%;">
         <el-table-column type="index" width="60"></el-table-column>
         <el-table-column prop="userId" label="用户id"></el-table-column>
         <el-table-column prop="logTime" label="日志时间"></el-table-column>
         <el-table-column prop="logMessage" label="日志信息"></el-table-column>
-        <el-table-column label="操作" width="150">
-          <template slot-scope="scope">
-            <addForm :call="search" :data="scope.row" size="mini" title="编辑"/>
-            <el-button type="danger" @click="del(scope.$index,scope.row)" size="mini">删除</el-button>
-          </template>
-        </el-table-column>
       </el-table>
 
       <!--工具条-->
@@ -81,7 +66,7 @@
         colLayOut: {xs: 12,sm:12,md:6, lg: 6},
         formLabelWidth: "160px",
         filters: {
-
+          id: ''
         },
         dataList: [],
         total: 0,

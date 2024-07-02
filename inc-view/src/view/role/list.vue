@@ -18,7 +18,7 @@
             <el-button type="primary" v-on:click="handleSearch">查询</el-button>
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" @click="showAddDialog">新增</el-button>
+            <el-button type="primary" @click="showAddDialog" v-if="option('新增')">新增</el-button>
           </el-form-item>
         </el-form>
       </el-col>
@@ -31,8 +31,8 @@
         <el-table-column prop="remark" label="备注" sortable></el-table-column>
         <el-table-column label="操作" width="150">
           <template slot-scope="scope">
-            <el-button size="mini" @click="showEditDialog(scope.$index,scope.row)">编辑</el-button>
-            <el-button type="danger" @click="delBook(scope.$index,scope.row)" size="mini">删除</el-button>
+            <el-button size="mini" @click="showEditDialog(scope.$index,scope.row)" v-if="option('编辑')">编辑</el-button>
+            <el-button type="danger" @click="delBook(scope.$index,scope.row)" size="mini" v-if="option('删除')">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -122,17 +122,17 @@
 
         //编辑相关数据
         editFormVisible: false,//编辑界面是否显示
-        editFormRules: {
-          name: [
-            {required: true, message: '请输入书名', trigger: 'blur'}
-          ],
-          author: [
-            {required: true, message: '请输入作者', trigger: 'blur'}
-          ],
-          description: [
-            {required: true, message: '请输入简介', trigger: 'blur'}
-          ]
-        },
+        // editFormRules: {
+        //   name: [
+        //     {required: true, message: '请输入书名', trigger: 'blur'}
+        //   ],
+        //   author: [
+        //     {required: true, message: '请输入作者', trigger: 'blur'}
+        //   ],
+        //   description: [
+        //     {required: true, message: '请输入简介', trigger: 'blur'}
+        //   ]
+        // },
         editForm: {
           id: 0,
           name: '',
@@ -143,18 +143,18 @@
 
         //新增相关数据
         addFormVisible: false,//新增界面是否显示
-        addLoading: false,
-        addFormRules: {
-          name: [
-            {required: true, message: '请输入书名', trigger: 'blur'}
-          ],
-          author: [
-            {required: true, message: '请输入作者', trigger: 'blur'}
-          ],
-          description: [
-            {required: true, message: '请输入简介', trigger: 'blur'}
-          ]
-        },
+        // addLoading: false,
+        // addFormRules: {
+        //   name: [
+        //     {required: true, message: '请输入书名', trigger: 'blur'}
+        //   ],
+        //   author: [
+        //     {required: true, message: '请输入作者', trigger: 'blur'}
+        //   ],
+        //   description: [
+        //     {required: true, message: '请输入简介', trigger: 'blur'}
+        //   ]
+        // },
         addForm: {
           name: '',
           author: '',
@@ -165,6 +165,27 @@
       }
     },
     methods: {
+      //权限选择
+      option: function (s) {
+        let menus = JSON.parse(window.localStorage.getItem("menus"));
+        for (let i in menus) {
+          let item = menus[i];
+          if (item.name==='系统管理') {
+            for (let j in item.children) {
+              let ch = item.children[j];
+              if (ch.name==='角色管理') {
+                for (let k in ch.children) {
+                  let as = ch.children[k];
+                  if (s===as.name) {
+                    return true;
+                  }
+                }
+              }
+            }
+          }
+        }
+        return false;
+      },
       handleCurrentChange(val) {
         this.page = val;
         this.search();

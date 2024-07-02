@@ -3,7 +3,7 @@
     <!--头部-->
     <el-col :span="24" class="topbar-wrap">
       <div class="topbar-title">
-        <span style="font-size: 18px;color: #fff;"></span>
+        <span style="font-size: 18px;color: #fff;">长江流域水数据管理平台</span>
       </div>
       <div class="topbar-account topbar-btn">
         <el-dropdown trigger="click">
@@ -119,6 +119,7 @@ export default {
   },
   methods: {
     handleSelect(index) {
+      console.log(this.menus);
       if (index.indexOf("http") != -1) {
         window.open(index);
       } else {

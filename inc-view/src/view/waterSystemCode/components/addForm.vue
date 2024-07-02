@@ -5,11 +5,11 @@
       <!--新增界面-->
       <el-dialog :title="title" :visible.sync="addFormVisible" :close-on-click-modal="false">
         <el-form :model="data" label-width="80px" :rules="addFormRules" ref="addForm">
-          <el-form-item label="名称" prop="name">
-            <el-input size="mini" v-model="data.name" auto-complete="off"></el-input>
-          </el-form-item>
           <el-form-item label="编码" prop="code">
             <el-input size="mini" v-model="data.code" auto-complete="off"></el-input>
+          </el-form-item>
+          <el-form-item label="名称" prop="name">
+            <el-input size="mini" v-model="data.name" auto-complete="off"></el-input>
           </el-form-item>
         </el-form>
         <div slot="footer" class="dialog-footer">

@@ -11,7 +11,7 @@
       <el-col :span="24" class="toolbar" style="padding-bottom: 0px;">
         <el-form :inline="true" size="small">
           <el-form-item>
-            <el-button type="primary" @click="showAddDialog(0,-1)">添加</el-button>
+            <el-button type="primary" @click="showAddDialog(0,-1)" v-if="option('新增')">添加</el-button>
           </el-form-item>
         </el-form>
       </el-col>
@@ -33,9 +33,9 @@
         <el-table-column label="权限" prop="object.perms"></el-table-column>
         <el-table-column label="操作" width="250">
           <template slot-scope="scope">
-            <el-button size="mini" @click="showAddDialog(scope.row.id,scope.row.object.type)">增加</el-button>
-            <el-button size="mini" @click="showEditDialog(scope.$index,scope.row)">编辑</el-button>
-            <el-button size="mini" type="danger" @click="remove(scope.$index,scope.row)">删除</el-button>
+            <el-button size="mini" @click="showAddDialog(scope.row.id,scope.row.object.type)" v-if="option('列表')">增加</el-button>
+            <el-button size="mini" @click="showEditDialog(scope.$index,scope.row)" v-if="option('编辑')">编辑</el-button>
+            <el-button size="mini" type="danger" @click="remove(scope.$index,scope.row)" v-if="option('删除')">删除</el-button>
           </template>
         </el-table-column>
       </tree-table>
@@ -90,7 +90,7 @@
             <el-input v-model="editForm.url" auto-complete="off"></el-input>
           </el-form-item>
 
-          <el-form-item label="路径" prop="url">
+          <el-form-item label="权限" prop="url">
             <el-input v-model="editForm.perms" auto-complete="off"></el-input>
           </el-form-item>
           <!--<el-form-item label="api类型" prop="perms">-->
@@ -150,6 +150,26 @@
       }
     },
     methods: {
+      option: function (s) {
+        let menus = JSON.parse(window.localStorage.getItem("menus"));
+        for (let i in menus) {
+          let item = menus[i];
+          if (item.name==='系统管理') {
+            for (let j in item.children) {
+              let ch = item.children[j];
+              if (ch.name==='系统菜单') {
+                for (let k in ch.children) {
+                  let as = ch.children[k];
+                  if (s===as.name) {
+                    return true;
+                  }
+                }
+              }
+            }
+          }
+        }
+        return false;
+      },
       search: function () {
         let that = this
         API.menus().then(

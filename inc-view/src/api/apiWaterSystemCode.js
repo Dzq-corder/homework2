@@ -1,10 +1,6 @@
 import httpClient from '../utils/httpClient';
 
 export default {
-  //根据编码查名称
-  getName:(data,callback) => {
-    return httpClient('/waterSystemCode/getName', {method:'get',data,}, callback);
-  },
 
   //分页查询
   listByPage: (data,callback) => {
